@@ -1,0 +1,29 @@
+FROM python:3.9-buster
+
+ENV VIRTUAL_ENV=/usr/local/env
+
+RUN python -m venv $VIRTUAL_ENV
+ENV PATH="$VIRTUAL_ENV/bin:$PATH"
+
+RUN apt-get update \
+    && apt-get install -y vim git netcat
+RUN python -m pip install --upgrade pip
+
+ARG GIT_USER_NAME
+RUN git config --global user.name "${GIT_USER_NAME}"
+
+ARG GIT_USER_EMAIL
+RUN git config --global user.email ${GIT_USER_EMAIL}
+
+RUN pip install poetry \
+    && poetry config virtualenvs.create false
+
+WORKDIR code
+
+COPY . /code/
+
+RUN poetry install
+
+EXPOSE 8000
+
+ENTRYPOINT ["/code/entrypoint.dev.sh"]

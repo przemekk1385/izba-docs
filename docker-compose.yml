@@ -1,0 +1,40 @@
+version: "3"
+services:
+  proxy:
+    build:
+      context: ./proxy
+    restart: always
+    volumes:
+      - static_volume:/usr/local/src/app/static
+      - media_volume:/usr/local/src/app/media
+    ports:
+      - 1303:80
+  app:
+    build:
+      context: .
+    command: gunicorn izba_docs.wsgi:application --bind 0.0.0.0:8000
+    environment:
+      DB_HOST: db
+      DB_PORT: 5432
+    ports:
+      - 8000:8000
+    depends_on:
+      # - db
+      - proxy
+    volumes:
+      - static_volume:/usr/local/src/app/static
+      - media_volume:/usr/local/src/app/media
+  # db:
+  #   image: postgres
+  #   restart: always
+  #   environment:
+  #     POSTGRES_DB: ${POSTGRES_DB}
+  #     POSTGRES_USER: ${POSTGRES_USER}
+  #     POSTGRES_PASSWORD: ${POSTGRES_PASSWORD}
+  #   volumes:
+  #     - db_volume:/var/lib/postgresql/data
+
+volumes:
+  static_volume:
+  media_volume:
+  # db_volume:

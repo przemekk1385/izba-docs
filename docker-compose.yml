@@ -12,7 +12,7 @@ services:
   app:
     build:
       context: .
-    command: gunicorn izba_docs.wsgi:application --bind 0.0.0.0:${APP_PORT}
+    command: gunicorn izba_docs.wsgi:application --bind 0.0.0.0:8000
     # environment:
     #   DB_HOST: db
     #   DB_PORT: 5432

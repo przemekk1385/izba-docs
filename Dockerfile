@@ -26,6 +26,4 @@ COPY ./.env .
 
 RUN poetry install --no-dev
 
-EXPOSE 8000
-
 ENTRYPOINT ["/usr/local/src/app/entrypoint.sh"]

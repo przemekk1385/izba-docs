@@ -24,6 +24,4 @@ COPY . /code/
 
 RUN poetry install
 
-EXPOSE 8000
-
 ENTRYPOINT ["/code/entrypoint.dev.sh"]

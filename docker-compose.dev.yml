@@ -13,19 +13,19 @@ services:
       DEBUG: 1
     ports:
       - 8000:8000
-    depends_on:
-      - db
+    # depends_on:
+    #   - db
     volumes:
       - $PWD:/code
-  db:
-    image: postgres
-    restart: always
-    environment:
-      POSTGRES_DB: ${POSTGRES_DB}
-      POSTGRES_USER: ${POSTGRES_USER}
-      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD}
-    volumes:
-      - db_volume:/var/lib/postgresql/data
+#   db:
+#     image: postgres
+#     restart: always
+#     environment:
+#       POSTGRES_DB: ${POSTGRES_DB}
+#       POSTGRES_USER: ${POSTGRES_USER}
+#       POSTGRES_PASSWORD: ${POSTGRES_PASSWORD}
+#     volumes:
+#       - db_volume:/var/lib/postgresql/data
 
-volumes:
-  db_volume:
+# volumes:
+#   db_volume:

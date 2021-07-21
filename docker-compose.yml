@@ -8,16 +8,16 @@ services:
       - static_volume:/usr/local/src/app/static
       - media_volume:/usr/local/src/app/media
     ports:
-      - 1303:80
+      - ${PROXY_PORT}:80
   app:
     build:
       context: .
-    command: gunicorn izba_docs.wsgi:application --bind 0.0.0.0:8000
-    environment:
-      DB_HOST: db
-      DB_PORT: 5432
+    command: gunicorn izba_docs.wsgi:application --bind 0.0.0.0:${APP_PORT}
+    # environment:
+    #   DB_HOST: db
+    #   DB_PORT: 5432
     ports:
-      - 8000:8000
+      - ${APP_PORT}:8000
     depends_on:
       # - db
       - proxy

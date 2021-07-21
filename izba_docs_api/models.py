@@ -53,16 +53,17 @@ class Tag(models.Model):
 class Document(models.Model):
 
     file = models.FileField(max_length=200, upload_to=Uuid4Path())
-    description = models.CharField(max_length=200)
+    title = models.CharField(max_length=100)
+    description = models.TextField(blank=True, null=True)
 
     # related
     event = models.ForeignKey(Event, on_delete=models.CASCADE, related_name="documents")
     tags = models.ManyToManyField(Tag)
 
     def __str__(self):
-        return "{} {}".format(self.file, self.description)
+        return "{} {}".format(self.file, self.title)
 
     def __repr__(self):
-        return "<Document id={} file={} description={}>".format(
-            self.id, self.file, self.description
+        return "<Document id={} file={} title={}>".format(
+            self.id, self.file, self.title
         )

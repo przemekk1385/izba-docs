@@ -11,5 +11,5 @@ API_VERSION_PREFIX = "api/v1/"
 app_name = IzbaDocsApiConfig.name
 urlpatterns = [
     re_path(f"^{API_VERSION_PREFIX}", include(router.urls)),
-    re_path(r"^docs/(?P<path>.*)$", views.serve_document, name="serve_file"),
+    re_path(r"^docs/(?P<path>.*)$", views.serve_document, name="document-serve"),
 ]

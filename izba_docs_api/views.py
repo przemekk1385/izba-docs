@@ -5,7 +5,7 @@ from django.shortcuts import get_object_or_404
 from .models import Document
 
 
-def serve_document(_, path):
+def document_serve(_, path):
     document = get_object_or_404(Document, file=path)
 
     response = HttpResponse()

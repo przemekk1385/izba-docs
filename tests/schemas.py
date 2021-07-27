@@ -15,6 +15,7 @@ DOCUMENT = Schema(
         "title": And(str, len),
         "description": And(str, len),
         "tags": [str],
+        "event": And(str, len),
     }
 )
 

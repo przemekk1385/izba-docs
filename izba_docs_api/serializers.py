@@ -1,6 +1,6 @@
 from rest_framework import serializers
 
-from .models import Document, Event
+from .models import Document, Event, Tag
 
 
 class DocumentSerializer(serializers.ModelSerializer):
@@ -24,3 +24,10 @@ class EventSerializer(serializers.ModelSerializer):
 
         fields = ("id", "title", "day", "summary", "documents")
         model = Event
+
+
+class TagSerializer(serializers.ModelSerializer):
+    class Meta:
+
+        fields = ("text",)
+        model = Tag

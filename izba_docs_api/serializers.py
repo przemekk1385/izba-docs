@@ -7,10 +7,11 @@ class DocumentSerializer(serializers.ModelSerializer):
 
     id = serializers.IntegerField(read_only=True)
     tags = serializers.SlugRelatedField(many=True, read_only=True, slug_field="text")
+    event = serializers.SlugRelatedField(read_only=True, slug_field="title")
 
     class Meta:
 
-        fields = ("id", "file", "title", "description", "tags")
+        fields = ("id", "file", "title", "description", "tags", "event")
         model = Document
 
 

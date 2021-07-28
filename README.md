@@ -1,3 +1,3 @@
-# izba-docs
+# izba-docs-api
 
-Documents viewer.
+Documents viewer API.

@@ -1,8 +1,9 @@
 version: "3"
 services:
-  proxy:
+  web:
     build:
-      context: ./proxy
+      context: ./web
+      dockerfile: Dockerfile.dev
     restart: always
     volumes:
       - static_volume:/usr/local/src/app/static
@@ -24,7 +25,7 @@ services:
       - 8000:8000
     depends_on:
       - db
-      - proxy
+      - web
     volumes:
       - $PWD:/code
       - static_volume:/usr/local/src/app/static

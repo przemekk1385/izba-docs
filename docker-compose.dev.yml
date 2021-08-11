@@ -1,35 +1,36 @@
-version: "3"
+version: "3.8"
 services:
   web:
     build:
       context: ./web
-      dockerfile: Dockerfile.dev
+      target: dev
     restart: always
     volumes:
-      - static_volume:/usr/local/src/app/static
-      - media_volume:/usr/local/src/app/media
+      - static_volume:/code/static
+      - media_volume:/code/media
     ports:
-      - 1300:80
+      - "1300:80"
   app:
     build:
       context: .
-      dockerfile: Dockerfile.dev
+      target: dev
       args:
         GIT_USER_NAME: ${GIT_USER_NAME}
         GIT_USER_EMAIL: ${GIT_USER_EMAIL}
+    command: python manage.py runserver 0.0.0.0:8000
     environment:
       DB_HOST: db
       DB_PORT: 5432
       DEBUG: 1
     ports:
-      - 8000:8000
+      - "8000:8000"
     depends_on:
       - db
       - web
     volumes:
-      - $PWD:/code
-      - static_volume:/usr/local/src/app/static
-      - media_volume:/usr/local/src/app/media
+      - ./:/code
+      - static_volume:/code/static
+      - media_volume:/code/media
   db:
     image: postgres
     restart: always

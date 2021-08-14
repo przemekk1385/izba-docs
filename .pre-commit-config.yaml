@@ -3,9 +3,34 @@ repos:
     rev: 21.7b0
     hooks:
       - id: black
-        language_version: python
+        name: black
+        entry: black
+        language: python
+        types_or: [ python, pyi ]
+        require_serial: true
+        description: "Black: The uncompromising Python code formatter"
+        language_version: python3
+        minimum_pre_commit_version: 2.9.2
+  - repo: https://github.com/PyCQA/bandit
+    rev: 1.7.0
+    hooks:
+      - id: bandit
+        name: bandit
+        entry: bandit
+        language: python
+        types: [ python ]
+        description: "Bandit is a tool for finding common security issues in Python code"
+        language_version: python3
+        args: ["-r", "izba_docs", "izba_docs_api"]
   - repo: https://github.com/PyCQA/isort
     rev: 5.9.2
     hooks:
       - id: isort
-        language_version: python
+        name: isort
+        entry: isort
+        language: python
+        types_or: [ cython, pyi, python ]
+        require_serial: true
+        language_version: python3
+        minimum_pre_commit_version: 2.9.2
+        args: [ "--filter-files" ]

@@ -5,6 +5,7 @@ from .models import Document, Event, Tag
 from .serializers import DocumentSerializer, EventSerializer, TagSerializer
 
 
+# pylint: disable=too-many-ancestors
 class DocumentViewSet(viewsets.ReadOnlyModelViewSet):
 
     serializer_class = DocumentSerializer
@@ -14,6 +15,7 @@ class DocumentViewSet(viewsets.ReadOnlyModelViewSet):
         return Document.objects.filter(event__visible_for=self.request.user)
 
 
+# pylint: disable=too-many-ancestors
 class EventViewSet(viewsets.ReadOnlyModelViewSet):
 
     serializer_class = EventSerializer
@@ -23,6 +25,7 @@ class EventViewSet(viewsets.ReadOnlyModelViewSet):
         return Event.objects.filter(visible_for=self.request.user)
 
 
+# pylint: disable=too-many-ancestors
 class TagViewSet(viewsets.ReadOnlyModelViewSet):
 
     serializer_class = TagSerializer

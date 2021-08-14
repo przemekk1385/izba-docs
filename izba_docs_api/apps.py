@@ -7,4 +7,5 @@ class IzbaDocsApiConfig(AppConfig):
     verbose_name = "Izba Docs API"
 
     def ready(self):
+        # pylint: disable=import-outside-toplevel, unused-import
         from . import signals

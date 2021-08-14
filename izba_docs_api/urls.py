@@ -1,5 +1,3 @@
-from django.conf import settings
-from django.contrib.staticfiles.views import serve
 from django.urls import include, re_path
 
 from . import views

@@ -1,14 +1,15 @@
 from pathlib import Path
 from uuid import uuid4
 
-from django.conf import settings
-from django.contrib.auth.models import User
+from django.contrib.auth import get_user_model
 from django.db import models
 from django.utils.deconstruct import deconstructible
 
+User = get_user_model()
 DATE_FORMAT = "%Y-%m-%d"
 
 
+# pylint: disable=too-few-public-methods
 @deconstructible
 class Uuid4Path:
     def __call__(self, instance, filename):

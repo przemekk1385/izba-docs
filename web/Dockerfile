@@ -4,7 +4,7 @@ RUN rm /etc/nginx/conf.d/default.conf
 COPY *.conf /etc/nginx/conf.d
 
 
-FROM node:latest AS builder
+FROM node:lts AS builder
 
 RUN apt-get update \
     && apt-get install -y git

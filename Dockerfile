@@ -18,6 +18,11 @@ COPY . /code/
 ENTRYPOINT ["/code/entrypoint.sh"]
 
 
+FROM builder AS prod
+
+RUN poetry install --no-dev
+
+
 FROM builder AS dev
 
 RUN apt-get install -y vim git
@@ -33,8 +38,3 @@ RUN poetry install
 RUN if command -v pre-commit; then \
     pre-commit install-hooks; \
 fi
-
-
-FROM builder AS prod
-
-RUN poetry install --no-dev

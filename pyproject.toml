@@ -21,6 +21,9 @@ pytest = "^6.2.4"
 pytest-cov = "^2.12.1"
 pytest-django = "^4.4.0"
 schema = "^0.7.4"
+bandit = "^1.7.0"
+pylint = "^2.9.6"
+pylint-django = "^2.4.4"
 
 [build-system]
 requires = ["poetry-core>=1.0.0"]

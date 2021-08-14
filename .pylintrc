@@ -1,0 +1,8 @@
+[MASTER]
+load-plugins=pylint_django
+django-settings-module=izba_docs.settings
+
+[FORMAT]
+disable=missing-docstring
+max-line-length = 88
+notes=

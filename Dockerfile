@@ -3,6 +3,7 @@ FROM python:3.9-slim AS builder
 ENV VIRTUAL_ENV=/usr/local/env
 
 RUN python -m venv $VIRTUAL_ENV
+
 ENV PATH="$VIRTUAL_ENV/bin:$PATH"
 
 RUN apt-get update \

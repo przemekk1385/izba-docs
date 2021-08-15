@@ -14,7 +14,6 @@ RUN apt-get update \
 WORKDIR /code
 
 RUN git clone https://github.com/przemekk1385/izba-docs-panel.git .
-COPY .env.* ./
 
 RUN npm install
 

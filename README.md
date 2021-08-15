@@ -6,7 +6,7 @@ Documents viewer API.
 
 Configuration for the development / production environment is done using environment variables.
 
-These variables can be passed either in an .env file or using Doppler-like tools. Required set of variables for each enviromnent is listed below.
+These variables can be passed using Doppler-like tools. Set of required variables for each environment is listed below.
 
 ### Development
 

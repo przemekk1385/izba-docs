@@ -21,9 +21,9 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # https://django-environ.readthedocs.io/en/latest/
 
 env = environ.Env(
-    DEBUG=(bool, False),
-    ALLOWED_HOSTS=(list, ["localhost", "127.0.0.1"]),
-    CORS_ORIGIN_WHITELIST=(list, []),
+    DJ_DEBUG=(bool, False),
+    DJ_ALLOWED_HOSTS=(list, ["localhost", "127.0.0.1"]),
+    DJ_CORS_ORIGIN_WHITELIST=(list, []),
 )
 env.read_env(env.str("./", ".env"))
 
@@ -32,12 +32,12 @@ env.read_env(env.str("./", ".env"))
 # See https://docs.djangoproject.com/en/3.2/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = env("SECRET_KEY")
+SECRET_KEY = env("DJ_SECRET_KEY")
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = env("DEBUG")
+DEBUG = env("DJ_DEBUG")
 
-ALLOWED_HOSTS = env.list("ALLOWED_HOSTS")
+ALLOWED_HOSTS = env.list("DJ_ALLOWED_HOSTS")
 
 
 # Application definition
@@ -96,8 +96,8 @@ DATABASES = {
         "NAME": env("POSTGRES_DB"),
         "USER": env("POSTGRES_USER"),
         "PASSWORD": env("POSTGRES_PASSWORD"),
-        "HOST": env("DB_HOST"),
-        "PORT": env.int("DB_PORT"),
+        "HOST": env("DJ_DATABASE_HOST"),
+        "PORT": env.int("DJ_DATABASE_PORT"),
     },
 }
 
@@ -171,4 +171,4 @@ REST_FRAMEWORK = {
 # django-cors-headers
 # https://github.com/adamchainz/django-cors-headers
 
-CORS_ORIGIN_WHITELIST = env.list("CORS_ORIGIN_WHITELIST")
+CORS_ORIGIN_WHITELIST = env.list("DJ_CORS_ORIGIN_WHITELIST")

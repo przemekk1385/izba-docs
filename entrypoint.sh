@@ -1,6 +1,6 @@
 #!/bin/sh
 
-until nc -z -v -w30 $DB_HOST $DB_PORT
+until nc -z -v -w30 $COMPOSE_DATABASE_HOST $COMPOSE_DATABASE_PORT
 do
   echo "Waiting for database connection..."
   sleep 5

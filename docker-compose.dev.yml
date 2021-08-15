@@ -1,4 +1,10 @@
 version: "3.8"
+
+x-postgres-variables: &postgres-variables
+  POSTGRES_DB: ${POSTGRES_DB}
+  POSTGRES_USER: ${POSTGRES_USER}
+  POSTGRES_PASSWORD: ${POSTGRES_PASSWORD}
+
 services:
   web:
     build:
@@ -19,9 +25,13 @@ services:
         GIT_USER_EMAIL: ${GIT_USER_EMAIL}
     command: python manage.py runserver 0.0.0.0:8000
     environment:
-      DB_HOST: db
-      DB_PORT: 5432
-      DEBUG: "True"
+      <<: *postgres-variables
+      DJ_ALLOWED_HOSTS: ${DJ_ALLOWED_HOSTS}
+      DJ_CORS_ORIGIN_WHITELIST: ${DJ_CORS_ORIGIN_WHITELIST}
+      DJ_DATABASE_HOST: db
+      DJ_DATABASE_PORT: 5432
+      DJ_DEBUG: "True"
+      DJ_SECRET_KEY: ${DJ_SECRET_KEY}
     ports:
       - "8000:8000"
     depends_on:
@@ -34,10 +44,7 @@ services:
   db:
     image: postgres
     restart: always
-    environment:
-      POSTGRES_DB: ${POSTGRES_DB}
-      POSTGRES_USER: ${POSTGRES_USER}
-      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD}
+    environment: *postgres-variables
     volumes:
       - db_volume:/var/lib/postgresql/data
 

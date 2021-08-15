@@ -6,6 +6,8 @@ COPY *.conf /etc/nginx/conf.d
 
 FROM node:lts AS builder
 
+ENV VUE_APP_API_HOST=${WEB_API_HOST}
+
 RUN apt-get update \
     && apt-get install -y git
 

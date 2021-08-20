@@ -172,3 +172,9 @@ REST_FRAMEWORK = {
 # https://github.com/adamchainz/django-cors-headers
 
 CORS_ORIGIN_WHITELIST = env.list("DJ_CORS_ORIGIN_WHITELIST")
+
+
+# Custom User model
+# https://docs.djangoproject.com/en/3.2/topics/auth/customizing/#substituting-a-custom-user-model
+
+AUTH_USER_MODEL = "izba_docs_api.User"

@@ -1,11 +1,11 @@
 from pathlib import Path
 from uuid import uuid4
 
-from django.contrib.auth import get_user_model
+from django.conf import settings
+from django.contrib.auth.models import AbstractUser
 from django.db import models
 from django.utils.deconstruct import deconstructible
 
-User = get_user_model()
 DATE_FORMAT = "%Y-%m-%d"
 
 
@@ -16,6 +16,10 @@ class Uuid4Path:
         return Path("{}.{}".format(uuid4(), filename.split(".")[-1])).as_posix()
 
 
+class User(AbstractUser):
+    pass
+
+
 class Event(models.Model):
 
     title = models.CharField(max_length=100)
@@ -23,7 +27,7 @@ class Event(models.Model):
     summary = models.TextField()
 
     # related
-    visible_for = models.ManyToManyField(User)
+    visible_for = models.ManyToManyField(settings.AUTH_USER_MODEL)
 
     class Meta:
 

@@ -1,4 +1,5 @@
 from django.contrib import admin
+from django.contrib.auth.admin import UserAdmin
 
 from . import models
 
@@ -14,5 +15,6 @@ class EventAdmin(admin.ModelAdmin):
     inlines = [InlineDocument]
 
 
+admin.site.register(models.User, UserAdmin)
 admin.site.register(models.Document)
 admin.site.register(models.Tag)

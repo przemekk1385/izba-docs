@@ -21,9 +21,10 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # https://django-environ.readthedocs.io/en/latest/
 
 env = environ.Env(
-    DJ_DEBUG=(bool, False),
     DJ_ALLOWED_HOSTS=(list, ["localhost", "127.0.0.1"]),
     DJ_CORS_ORIGIN_WHITELIST=(list, []),
+    DJ_DEBUG=(bool, False),
+    DJ_SECURE_SSL_REDIRECT=(bool, False),
 )
 env.read_env(env.str("./", ".env"))
 
@@ -178,3 +179,11 @@ CORS_ORIGIN_WHITELIST = env.list("DJ_CORS_ORIGIN_WHITELIST")
 # https://docs.djangoproject.com/en/3.2/topics/auth/customizing/#substituting-a-custom-user-model
 
 AUTH_USER_MODEL = "izba_docs_api.User"
+
+
+# Use SSL
+# https://docs.djangoproject.com/en/3.2/topics/security/#ssl-https
+
+if env("DJ_SECURE_SSL_REDIRECT"):
+    SECURE_SSL_REDIRECT = True
+    SECURE_PROXY_SSL_HEADER = ("HTTP_X_FORWARDED_PROTO", "https")

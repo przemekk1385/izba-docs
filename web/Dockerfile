@@ -11,6 +11,8 @@ ENV VUE_APP_API_HOST=${WEB_API_HOST}
 RUN apt-get update \
     && apt-get install -y git
 
+RUN npm install -g npm
+
 WORKDIR /code
 
 RUN git clone https://github.com/przemekk1385/izba-docs-panel.git .

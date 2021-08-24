@@ -9,3 +9,8 @@ urlpatterns = [
     path("", include("izba_docs_api.urls")),
     path("api-token-auth/", views.obtain_auth_token),
 ] + static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
+
+if settings.DEBUG:
+    urlpatterns.append(
+        path("sentry-debug/", lambda _: 1 / 0),
+    )

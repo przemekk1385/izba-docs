@@ -35,7 +35,3 @@ ARG GIT_USER_EMAIL
 RUN git config --global user.email "${GIT_USER_EMAIL}"
 
 RUN poetry install
-
-RUN if command -v pre-commit; then \
-    pre-commit install-hooks; \
-fi

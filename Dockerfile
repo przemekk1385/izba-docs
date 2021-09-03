@@ -26,12 +26,6 @@ RUN poetry install --no-dev
 
 FROM builder AS dev
 
-RUN apt-get install -y vim git
-
-ARG GIT_USER_NAME
-RUN git config --global user.name "${GIT_USER_NAME}"
-
-ARG GIT_USER_EMAIL
-RUN git config --global user.email "${GIT_USER_EMAIL}"
+RUN apt-get install -y vim
 
 RUN poetry install

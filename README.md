@@ -17,8 +17,6 @@ Set of environment variables required by development docker-compose file (see `d
 | DJ_ALLOWED_HOSTS | `ALLOWED_HOSTS` (Django `settings.py`) |
 | DJ_CORS_ORIGIN_WHITELIST | `CORS_ORIGIN_WHITELIST` (Django `settings.py`) |
 | DJ_SECRET_KEY | `SECRET_KEY` (Django `settings.py`) |
-| GIT_USER_EMAIL | `user.email` for `git config --global` |
-| GIT_USER_NAME | `user.name` for `git config --global` |
 | POSTGRES_DB | Database name for PostgreSQL image |
 | POSTGRES_PASSWORD | Superuser password for PostgreSQL image |
 | POSTGRES_USER | Superuser name for PostgreSQL image |

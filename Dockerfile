@@ -1,9 +1,8 @@
-FROM python:3.9-slim AS builder
+FROM python:3.9-slim-buster AS builder
 
-ENV VIRTUAL_ENV=/usr/local/env
+ENV VIRTUAL_ENV=/usr/local/python
 
 RUN python -m venv $VIRTUAL_ENV
-
 ENV PATH="$VIRTUAL_ENV/bin:$PATH"
 
 RUN apt-get update \
@@ -16,16 +15,16 @@ WORKDIR /code
 
 COPY . /code/
 
-ENTRYPOINT ["/code/entrypoint.sh"]
-
 
 FROM builder AS prod
 
 RUN poetry install --no-dev
 
+ENTRYPOINT ["/code/entrypoint.sh"]
+
 
 FROM builder AS dev
 
-RUN apt-get install -y vim
-
 RUN poetry install
+
+ENTRYPOINT ["/code/entrypoint.sh"]
